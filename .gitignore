@@ -114,5 +114,23 @@ all.config
 # Kdevelop4
 *.kdev4
 
+# out
+out
+
+# audio-kernel
+audio-kernel
+
+# techpack-sdm845-audio
+techpack
+
+# build-kernel
+build.sh
+
+# build-phone-kernel
+build-phone.sh
+
+# build-server-kernel
+server-build.sh
+
 # fetched Android config fragments
 android/configs/android-*.cfg
