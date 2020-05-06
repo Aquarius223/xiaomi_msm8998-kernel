@@ -1,5 +1,6 @@
 /* Copyright (c) 2012-2018, The Linux Foundation. All rights reserved.
- * Copyright (C) 2018 XiaoMi, Inc.
+ * Copyright (C) 2019 XiaoMi, Inc.
+ * Copyright (C) 2020 Amktiao.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -51,7 +52,6 @@
 #define HWMON_KEY_BL_HIGH "bl_level_high"
 #define HWMON_KEY_BL_LOW "bl_level_low"
 #define DAY_SECS (60*60*24)
-
 
 #define DISPLAY_OFF_MODE 0x60000
 #define DISPLAY_ON_MODE 0x70000
@@ -469,7 +469,7 @@ static void mdss_dsi_panel_count(struct mdss_panel_data *pdata, int enable)
 				pdata->panel_info.bootRTCtime = rtctime.tv_sec;
 			}
 		} else {
-			pr_info("panel_info.bootRTCtime init!\n");
+			pr_debug("panel_info.bootRTCtime init!\n");
 			pdata->panel_info.bootRTCtime = rtctime.tv_sec;
 		}
 		memset(ch, 0, sizeof(ch));
@@ -504,7 +504,7 @@ int mdss_dsi_panel_reset(struct mdss_panel_data *pdata, int enable)
 	 * reset action would be done by touch when panel is on.
 	 */
 	if (mdss_panel_reset_skip && !pinfo->panel_dead) {
-		pr_info("%s: panel reset skip\n", __func__);
+		pr_debug("%s: panel reset skip\n", __func__);
 		return rc;
 	}
 
@@ -927,7 +927,7 @@ static void value2str(char *pbuf, char read_cnt, int bit_valide)
 		}
 		bit_valide = bit_valide >> 1;
 	}
-	pr_info("read %s  from panel\n", pbuf);
+	pr_debug("read %s  from panel\n", pbuf);
 }
 
 static inline void mdss_panel_disparam_set(struct mdss_dsi_ctrl_pdata *ctrl, uint32_t param)
@@ -1563,7 +1563,7 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 
-	pr_info("%s: ndx=%d\n", __func__, ctrl->ndx);
+	pr_debug("%s: ndx=%d\n", __func__, ctrl->ndx);
 
 	if (pinfo->dcs_cmd_by_left) {
 		if (ctrl->ndx != DSI_CTRL_LEFT)
@@ -1597,7 +1597,7 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	ctrl->dsi_panel_off_mode = false;
 
 end:
-	pr_info("%s:-\n", __func__);
+	pr_debug("%s:-\n", __func__);
 	return ret;
 }
 
@@ -1636,7 +1636,7 @@ static int mdss_dsi_post_panel_on(struct mdss_panel_data *pdata)
 	}
 
 end:
-	pr_info("%s:-\n", __func__);
+	pr_debug("%s:-\n", __func__);
 	return 0;
 }
 
@@ -1654,7 +1654,7 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 
-	pr_info("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
+	pr_debug("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
 
 	cancel_delayed_work_sync(&ctrl->cmds_work);
 

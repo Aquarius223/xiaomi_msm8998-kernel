@@ -3,7 +3,8 @@
  *
  * Copyright (c) 2008-2020, The Linux Foundation. All rights reserved.
  * Copyright (C) 2007 Google Incorporated
- * Copyright (C) 2018 XiaoMi, Inc.
+ * Copyright (C) 2019 XiaoMi, Inc.
+ * Copyright (C) 2020 Amktiao.
  *
  * This software is licensed under the terms of the GNU General Public
  * License version 2, as published by the Free Software Foundation, and
@@ -2027,11 +2028,11 @@ void mdss_fb_set_backlight(struct msm_fb_data_type *mfd, u32 bkl_lvl)
 
 			if (0 == temp) {
 				backlight_enable_flag = 0;
-				pr_info("in %s,turn backlight off level = %d\n", __func__, temp);
+				pr_debug("in %s,turn backlight off level = %d\n", __func__, temp);
 			} else {
 				if (0 == backlight_enable_flag) {
 					backlight_enable_flag++;
-					pr_info("in %s,set backlight level = %d\n", __func__, temp);
+					pr_debug("in %s,set backlight level = %d\n", __func__, temp);
 				}
 			}
 
@@ -5665,7 +5666,7 @@ int mdss_prim_panel_fb_unblank(int timeout)
 				!atomic_read(&mfd->resume_pending),
 				msecs_to_jiffies(WAIT_RESUME_TIMEOUT));
 		if (!ret) {
-			pr_info("Primary fb resume timeout\n");
+			pr_debug("Primary fb resume timeout\n");
 			return -ETIMEDOUT;
 		}
 #ifdef CONFIG_FRAMEBUFFER_CONSOLE

@@ -1,4 +1,5 @@
 /* Copyright (c) 2014-2016, 2018 The Linux Foundation. All rights reserved.
+ * Copyright (C) 2020 Amktiao.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -633,25 +634,20 @@ void mdss_panel_info_from_timing(struct mdss_panel_timing *pt,
 	pinfo->lcdc.v_front_porch_fixed = pt->v_front_porch;
 	pinfo->lcdc.v_back_porch = pt->v_back_porch;
 	pinfo->lcdc.v_pulse_width = pt->v_pulse_width;
-
 	pinfo->lcdc.border_bottom = pt->border_bottom;
 	pinfo->lcdc.border_top = pt->border_top;
 	pinfo->lcdc.border_left = pt->border_left;
 	pinfo->lcdc.border_right = pt->border_right;
 	pinfo->lcdc.xres_pad = pt->border_left + pt->border_right;
 	pinfo->lcdc.yres_pad = pt->border_top + pt->border_bottom;
-
 	pinfo->lm_widths[0] = pt->lm_widths[0];
 	pinfo->lm_widths[1] = pt->lm_widths[1];
-
 	pinfo->mipi.frame_rate = pt->frame_rate;
 	pinfo->edp.frame_rate = pinfo->mipi.frame_rate;
-
 	pinfo->dsc = pt->dsc;
 	pinfo->dsc_enc_total = pt->dsc_enc_total;
 	pinfo->fbc = pt->fbc;
 	pinfo->compression_mode = pt->compression_mode;
-
 	pinfo->roi_alignment = pt->roi_alignment;
 	pinfo->te = pt->te;
 
